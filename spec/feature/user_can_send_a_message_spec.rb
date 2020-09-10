@@ -1,6 +1,5 @@
 feature 'User can send a message' do
   let(:user) {create(:user) }
-
   context 'successfully' do
     before do
       visit root_path
@@ -15,7 +14,6 @@ feature 'User can send a message' do
       fill_in "conversation_body", with: 'hey'
       click_on "Send Message"
     end
-
 
     it 'succesfully went into inbox' do
         expect(page).to have_content 'Your message was successfully sent!'
