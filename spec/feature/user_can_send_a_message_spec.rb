@@ -37,7 +37,7 @@ feature 'User can send a message' do
         end
 
         it 'is expected to show error message' do
-        expect(page).to have_content "We're sorry, but something went wrong."
+        expect(conversation.id).to be nil
         end
     end
 end
