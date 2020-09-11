@@ -31,7 +31,6 @@ feature 'User can send a message' do
             click_on "Compose"
             click_on user.name
             fill_in "Subject", with: 'text'
-            fill_in "conversation_body", with: ''
             click_on "Send Message"
         end
 
