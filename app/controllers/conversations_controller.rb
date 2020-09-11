@@ -7,14 +7,16 @@ class ConversationsController < ApplicationController
   def create
     recipients = User.where(id: conversation_params[:recipients])
     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
-    flash[:success] = 'Your message was successfully sent!'
-    redirect_to conversation_path(conversation)
-
+    if !conversation.nil?
+      flash[:success] = 'Your message was successfully sent!'
+      redirect_to conversation_path(conversation)
+    else
+      redirect_to new_conversation_path, notice: "You must fill in all the fileds before sending your message"
+    end
   end
 
   def show
     @receipts = conversation.receipts_for(current_user)
-    # mark conversation as read
     conversation.mark_as_read(current_user)
   end
 
@@ -43,5 +45,4 @@ class ConversationsController < ApplicationController
   def message_params
     params.require(:message).permit(:body, :subject)
   end
-
 end

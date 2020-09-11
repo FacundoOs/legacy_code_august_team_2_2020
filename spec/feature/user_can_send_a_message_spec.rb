@@ -20,7 +20,6 @@ feature 'User can send a message' do
         end
     end
 
-
     context 'unsuccessfully' do
         before do
             visit root_path
@@ -37,7 +36,7 @@ feature 'User can send a message' do
         end
 
         it 'is expected to show error message' do
-        expect(conversation.id).to be nil
+          expect(page).to have_content 'You must fill in all the fileds before sending your message'
         end
     end
 end
